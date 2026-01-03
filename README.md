@@ -1,16 +1,120 @@
-# React + Vite
+# 🌴 Jelajah.in - Tour & Travel Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive landing page for an Indonesian tour and travel agency built with React, Vite, and Tailwind CSS v4.
 
-Currently, two official plugins are available:
+![Hero Section](https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=60)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- **Modern UI/UX** - Clean and professional design with smooth animations
+- **Fully Responsive** - Works seamlessly on desktop, tablet, and mobile
+- **AOS Animations** - Scroll-triggered animations for enhanced user experience
+- **Zero-Config Tailwind v4** - Latest Tailwind CSS without configuration files
+- **Component-Based** - Modular architecture following Shadcn UI patterns
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+| Technology | Purpose |
+|------------|---------|
+| [React 19](https://react.dev/) | UI Framework |
+| [Vite](https://vitejs.dev/) | Build Tool & Dev Server |
+| [Tailwind CSS v4](https://tailwindcss.com/) | Utility-First Styling |
+| [AOS](https://michalsnik.github.io/aos/) | Scroll Animations |
+| [Lucide React](https://lucide.dev/) | Icon Library |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📁 Project Structure
+
+```
+src/
+├── lib/
+│   └── utils.js              # Utility functions (cn)
+├── components/
+│   ├── ui/                   # Reusable UI components
+│   │   ├── Button.jsx
+│   │   └── Card.jsx
+│   ├── layout/               # Layout components
+│   │   ├── Navbar.jsx
+│   │   └── Footer.jsx
+│   └── sections/             # Page sections
+│       ├── Hero.jsx
+│       ├── Stats.jsx
+│       └── PopularDestinations.jsx
+├── data/
+│   └── destinations.js       # Destination data
+├── App.jsx                   # Main application
+├── main.jsx                  # Entry point
+└── index.css                 # Global styles
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/HafidzThufail22/Jelajah-in.git
+   cd Jelajah-in
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+
+3. Start development server
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:5173](http://localhost:5173) in your browser
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+## 📸 Screenshots
+
+### Hero Section
+Full-screen hero with gradient overlay, call-to-action buttons, and scroll indicator.
+
+### Stats Section
+Company statistics with animated icons showing traveler count, destinations, ratings, and trips.
+
+### Popular Destinations
+Grid layout showcasing 6 popular Indonesian destinations with pricing and ratings:
+- Raja Ampat
+- Labuan Bajo
+- Bali
+- Lombok
+- Yogyakarta
+- Bromo
+
+### Footer
+Dark-themed footer with company info, navigation links, contact details, and social media icons.
+
+## 🎨 Color Palette
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Primary | `#0e7490` | Buttons, links, accents |
+| Secondary | `#f97316` | CTA highlights, ratings |
+| Dark | `#111827` | Footer background |
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+---
+
+Made with ❤️ for exploring the beauty of Indonesia
