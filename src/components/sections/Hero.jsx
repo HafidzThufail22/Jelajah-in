@@ -21,10 +21,6 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div data-aos="fade-up">
-          <span className="inline-block px-4 py-2 bg-cyan-700/20 text-cyan-300 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
-            🌴 Tour & Travel Terpercaya
-          </span>
-
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Jelajahi Keindahan
             <br />
@@ -38,8 +34,8 @@ export function Hero() {
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            Temukan destinasi impian Anda bersama kami. Pengalaman perjalanan tak
-            terlupakan dengan harga terjangkau dan layanan terbaik.
+            Temukan destinasi impian Anda bersama kami. Pengalaman perjalanan
+            tak terlupakan dengan harga terjangkau dan layanan terbaik.
           </p>
 
           <div
