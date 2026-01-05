@@ -1,19 +1,40 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Play, ChevronDown } from "lucide-react";
+import bromo from "@/assets/img/bromo.jpg";
+import rajaAmpat from "@/assets/img/raja-ampat.jpg";
+import borobudur from "@/assets/img/borobudur.jpeg";
+
+const heroImages = [rajaAmpat, bromo, borobudur];
 
 export function Hero() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 5000); // Ganti setiap 5 detik
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="beranda"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&auto=format&fit=crop&q=80')`,
-        }}
-      />
+      {/* Background Images with Fade Transition */}
+      {heroImages.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+          style={{
+            backgroundImage: `url('${image}')`,
+          }}
+        />
+      ))}
 
       {/* Overlay Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
