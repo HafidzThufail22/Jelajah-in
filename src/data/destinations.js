@@ -1,6 +1,12 @@
 import rajaAmpat from "@/assets/img/raja-ampat.jpg";
 import bromo from "@/assets/img/bromo.jpg";
 import borobudur from "@/assets/img/borobudur.jpeg";
+import labuanBajo from "@/assets/img/labuan-bajo.jpg";
+import lombok from "@/assets/img/lombok.jpg";
+import bali from "@/assets/img/bali.jpg";
+import kotaJogja from "@/assets/img/kota-jogja.png";
+import kotaLamaSemarang from "@/assets/img/kota-lama-semarang.jpg";
+import kawahIjen from "@/assets/img/kawah-ijen.jpg";
 
 export const destinations = [
   {
@@ -16,10 +22,9 @@ export const destinations = [
     id: 2,
     name: "Labuan Bajo",
     location: "Nusa Tenggara Timur",
+    image: labuanBajo,
     price: "Rp 5.200.000",
     rating: 4.8,
-    image:
-      "https://images.unsplash.com/photo-1571366343168-631c5bcca7a4?w=800&auto=format&fit=crop&q=60",
     description:
       "Rumah Komodo dengan pemandangan matahari terbenam spektakuler",
   },
@@ -27,40 +32,63 @@ export const destinations = [
     id: 3,
     name: "Bali",
     location: "Bali",
+    image: bali,
     price: "Rp 3.800.000",
     rating: 4.7,
-    image:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&auto=format&fit=crop&q=60",
     description: "Pulau Dewata dengan budaya dan pantai yang memukau",
   },
   {
     id: 4,
     name: "Lombok",
     location: "Nusa Tenggara Barat",
+    image: lombok,
     price: "Rp 4.100.000",
     rating: 4.6,
-    image:
-      "https://images.unsplash.com/photo-1588001832198-c15cff59b078?w=800&auto=format&fit=crop&q=60",
     description: "Gili Trawangan dan keindahan Gunung Rinjani",
   },
   {
     id: 5,
     name: "Yogyakarta",
     location: "DI Yogyakarta",
+    image: kotaJogja,
     price: "Rp 2.500.000",
     rating: 4.8,
-    image:
-      "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=800&auto=format&fit=crop&q=60",
     description: "Kota budaya dengan Candi Borobudur dan Prambanan",
   },
   {
     id: 6,
     name: "Bromo",
     location: "Jawa Timur",
+    image: bromo,
     price: "Rp 2.800.000",
     rating: 4.7,
-    image:
-      "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=800&auto=format&fit=crop&q=60",
     description: "Sunrise spektakuler di lautan pasir",
+  },
+  {
+    id: 7,
+    name: "Kota Lama Semarang",
+    location: "Jawa Tengah",
+    image: kotaLamaSemarang,
+    price: "Rp 1.800.000",
+    rating: 4.7,
+    description: "Wisata sejarah dengan arsitektur kolonial Belanda",
+  },
+  {
+    id: 8,
+    name: "Borobudur",
+    location: "Jawa Tengah",
+    image: borobudur,
+    price: "Rp 2.200.000",
+    rating: 4.7,
+    description: "Candi Buddha terbesar di dunia dengan arsitektur megah",
+  },
+  {
+    id: 9,
+    name: "Kawah Ijen",
+    location: "Jawa Timur",
+    image: kawahIjen,
+    price: "Rp 2.300.000",
+    rating: 4.7,
+    description: "Fenomena blue fire dan danau asam terbesar di dunia",
   },
 ];
