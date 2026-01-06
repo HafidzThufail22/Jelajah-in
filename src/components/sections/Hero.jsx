@@ -67,13 +67,6 @@ export function Hero() {
             <Button variant="primary" className="px-8 py-4 text-lg">
               Mulai Petualangan
             </Button>
-            <Button
-              variant="outline"
-              className="flex items-center gap-2 px-8 py-4 text-lg"
-            >
-              <Play className="w-5 h-5" />
-              Lihat Video
-            </Button>
           </div>
         </div>
       </div>
