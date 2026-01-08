@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { name: "Beranda", href: "#beranda" },
@@ -36,7 +36,7 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-            <Button variant="primary">Pesan Sekarang</Button>
+            <Button variant="outline">Pesan Sekarang</Button>
           </div>
 
           {/* Mobile Menu Button */}
