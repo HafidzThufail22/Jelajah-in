@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MapPin, Star } from "lucide-react";
-import { Card, CardImage, CardContent } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
+import { Card, CardImage, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { destinations } from "@/data/destinations";
 
 export function PopularDestinations() {
