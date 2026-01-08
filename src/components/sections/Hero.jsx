@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/Button";
-import { Play, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
 import bromo from "@/assets/img/bromo.jpg";
 import rajaAmpat from "@/assets/img/raja-ampat.jpg";
 import borobudur from "@/assets/img/borobudur.jpeg";
@@ -37,7 +37,7 @@ export function Hero() {
       ))}
 
       {/* Overlay Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-black/70" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -45,7 +45,7 @@ export function Hero() {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Jelajahi Keindahan
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-orange-400">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-orange-400">
               Nusantara
             </span>
           </h1>
@@ -64,8 +64,8 @@ export function Hero() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <Button variant="primary" className="px-8 py-4 text-lg">
-              Mulai Petualangan
+            <Button variant="secondary" className="px-8 py-4 text-lg">
+              <a href="#pesan">Mulai Petualangan</a>
             </Button>
           </div>
         </div>
