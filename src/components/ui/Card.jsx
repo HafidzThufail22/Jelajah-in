@@ -1,38 +1,105 @@
+import * as React from "react";
+
 import { cn } from "@/lib/utils";
 
-export function Card({ children, className, ...props }) {
+function Card({ className, ...props }) {
   return (
     <div
+      data-slot="card"
       className={cn(
-        "bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1",
+        "bg-card text-card-foreground flex flex-col rounded-xl border shadow-sm overflow-hidden",
         className
       )}
       {...props}
-    >
-      {children}
-    </div>
+    />
   );
 }
 
-export function CardImage({ src, alt, className }) {
+function CardHeader({ className, ...props }) {
   return (
-    <div className="overflow-hidden">
+    <div
+      data-slot="card-header"
+      className={cn(
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function CardTitle({ className, ...props }) {
+  return (
+    <div
+      data-slot="card-title"
+      className={cn("leading-none font-semibold", className)}
+      {...props}
+    />
+  );
+}
+
+function CardDescription({ className, ...props }) {
+  return (
+    <div
+      data-slot="card-description"
+      className={cn("text-muted-foreground text-sm", className)}
+      {...props}
+    />
+  );
+}
+
+function CardAction({ className, ...props }) {
+  return (
+    <div
+      data-slot="card-action"
+      className={cn(
+        "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function CardContent({ className, ...props }) {
+  return (
+    <div data-slot="card-content" className={cn("p-6", className)} {...props} />
+  );
+}
+
+function CardFooter({ className, ...props }) {
+  return (
+    <div
+      data-slot="card-footer"
+      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      {...props}
+    />
+  );
+}
+
+function CardImage({ className, src, alt, ...props }) {
+  return (
+    <div
+      data-slot="card-image"
+      className={cn("overflow-hidden rounded-t-xl", className)}
+      {...props}
+    >
       <img
         src={src}
         alt={alt}
-        className={cn(
-          "w-full h-48 object-cover transition-transform duration-500 hover:scale-110",
-          className
-        )}
+        className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
       />
     </div>
   );
 }
 
-export function CardContent({ children, className }) {
-  return (
-    <div className={cn("p-5", className)}>
-      {children}
-    </div>
-  );
-}
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardAction,
+  CardDescription,
+  CardContent,
+  CardImage,
+};
