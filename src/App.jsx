@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
 import { PopularDestinations } from "@/components/sections/PopularDestinations";
+import { BookingSection } from "@/components/sections/BookingSection";
 
 function App() {
   useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
         <Hero />
         <Stats />
         <PopularDestinations />
+        <BookingSection />
       </main>
       <Footer />
     </div>
