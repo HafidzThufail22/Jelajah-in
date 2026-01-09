@@ -36,7 +36,7 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-            <Button variant="outline">Pesan Sekarang</Button>
+            <Button variant="secondary" size="lg">Pesan Sekarang</Button>
           </div>
 
           {/* Mobile Menu Button */}
