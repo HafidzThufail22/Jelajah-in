@@ -64,7 +64,7 @@ export function Hero() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <Button variant="secondary" className="px-8 py-4 text-lg">
+            <Button variant="secondary" size="xl" asChild>
               <a href="#pesan">Mulai Petualangan</a>
             </Button>
           </div>
