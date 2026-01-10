@@ -64,7 +64,7 @@ export function Hero() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <Button variant="secondary" size="xl" asChild>
+            <Button variant="secondary" size="xl" asChild className="text-xl">
               <a href="#pesan">Mulai Petualangan</a>
             </Button>
           </div>
