@@ -1,13 +1,12 @@
 import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Hero } from "@/components/sections/Hero";
-import { Stats } from "@/components/sections/Stats";
-import { PopularDestinations } from "@/components/sections/PopularDestinations";
-import { BookingSection } from "@/components/sections/BookingSection";
+import { HomePage } from "@/pages/HomePage";
+import { BookingPage } from "@/pages/BookingPage";
 
 function App() {
   useEffect(() => {
@@ -22,10 +21,10 @@ function App() {
     <div className="min-h-screen bg-white">
       <Navbar />
       <main>
-        <Hero />
-        <Stats />
-        <PopularDestinations />
-        <BookingSection />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/pesan" element={<BookingPage />} />
+        </Routes>
       </main>
       <Footer />
     </div>
@@ -33,3 +32,4 @@ function App() {
 }
 
 export default App;
+
