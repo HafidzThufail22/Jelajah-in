@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import bromo from "@/assets/img/bromo.jpg";
@@ -64,8 +65,8 @@ export function Hero() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <Button variant="secondary" size="xl" asChild className="text-xl">
-              <a href="#pesan">Mulai Petualangan</a>
+            <Button variant="cyan" size="xl" asChild className="text-xl">
+              <Link to="/pesan">Mulai Petualangan</Link>
             </Button>
           </div>
         </div>
