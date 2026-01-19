@@ -2,8 +2,6 @@
 
 A modern, responsive landing page for an Indonesian tour and travel agency built with React, Vite, and Tailwind CSS v4.
 
-![Homepage Preview](docs/homepage-preview.png)
-
 ## ✨ Features
 
 - **Modern UI/UX** - Clean and professional design with smooth animations
