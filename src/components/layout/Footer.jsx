@@ -55,7 +55,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2 text-gray-400">
                 <MapPin className="w-4 h-4 text-cyan-500 mt-1" />
-                Jakarta, Indonesia
+                Yogyakarta, Indonesia
               </li>
             </ul>
           </div>
