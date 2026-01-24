@@ -18,6 +18,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { User, Mail, Phone, Calendar, Users, MapPin } from "lucide-react";
+import { SuccessAlert } from "@/components/ui/success-alert";
 
 const paketList = [
   { id: "raja-ampat", nama: "Raja Ampat Explorer", harga: 8500000 },
@@ -39,6 +40,7 @@ export function BookingForm() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -54,8 +56,8 @@ export function BookingForm() {
     // Di sini Anda bisa mengirim ke API
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    
     setIsSubmitting(false);
+    setShowSuccess(true);
 
     // Reset form
     setFormData({
@@ -219,6 +221,15 @@ export function BookingForm() {
           </Button>
         </form>
       </CardContent>
+
+      {/* Success Alert Modal */}
+      <SuccessAlert
+        isOpen={showSuccess}
+        onClose={() => setShowSuccess(false)}
+        title="Berhasil!"
+        message="Pemesanan paket jelajah Anda telah berhasil dikirim. Tim kami akan segera menghubungi Anda."
+        buttonText="LANJUTKAN"
+      />
     </Card>
   );
 }
