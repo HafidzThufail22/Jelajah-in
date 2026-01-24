@@ -54,7 +54,7 @@ export function BookingForm() {
     // Di sini Anda bisa mengirim ke API
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    alert("Pemesanan berhasil dikirim! Kami akan menghubungi Anda segera.");
+    
     setIsSubmitting(false);
 
     // Reset form
