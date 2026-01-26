@@ -72,6 +72,7 @@ export function BookingForm() {
   };
 
   return (
+    <>
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl font-bold text-gray-800">
@@ -110,7 +111,7 @@ export function BookingForm() {
               <Input
                 id="email"
                 type="email"
-                placeholder="contoh@email.com"
+                placeholder="Masukkan email anda"
                 value={formData.email}
                 onChange={(e) => handleChange("email", e.target.value)}
                 required
@@ -221,15 +222,16 @@ export function BookingForm() {
           </Button>
         </form>
       </CardContent>
-
-      {/* Success Alert Modal */}
-      <SuccessAlert
-        isOpen={showSuccess}
-        onClose={() => setShowSuccess(false)}
-        title="Berhasil!"
-        message="Pemesanan paket jelajah Anda telah berhasil dikirim. Tim kami akan segera menghubungi Anda."
-        buttonText="LANJUTKAN"
-      />
     </Card>
+
+    {/* Success Alert Modal - Di luar Card agar overlay full page */}
+    <SuccessAlert
+      isOpen={showSuccess}
+      onClose={() => setShowSuccess(false)}
+      title="Berhasil!"
+      message="Pemesanan paket jelajah Anda telah berhasil dikirim. Tim kami akan segera menghubungi Anda."
+      buttonText="LANJUTKAN"
+    />
+  </>
   );
 }
