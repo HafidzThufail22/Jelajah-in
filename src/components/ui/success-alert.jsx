@@ -1,4 +1,5 @@
 import * as React from "react";
+import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 import { Check, ChevronRight } from "lucide-react";
 
@@ -33,17 +34,19 @@ function SuccessAlert({
 }) {
   if (!isOpen) return null;
 
-  return (
+  // Menggunakan Portal untuk render langsung ke document.body
+  // Ini memastikan overlay menutupi SELURUH tab browser
+  return createPortal(
     <>
-      {/* Backdrop */}
+      {/* Full Page Backdrop with Strong Blur - Render di level body */}
       <div 
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 bg-black/70 backdrop-blur-md z-[9999] flex items-center justify-center"
         onClick={onClose}
       >
-        {/* Alert Modal */}
+        {/* Full Page Alert Content */}
         <div
           className={cn(
-            "relative bg-white rounded-2xl shadow-2xl max-w-sm w-full p-8 text-center transform animate-success-pop",
+            "relative w-full h-full flex flex-col items-center justify-center p-8 text-center transform animate-success-pop",
             className
           )}
           onClick={(e) => e.stopPropagation()}
@@ -52,35 +55,35 @@ function SuccessAlert({
           {/* Confetti Effect */}
           <Confetti />
 
-          {/* Success Icon */}
-          <div className="relative z-10 flex justify-center mb-6">
+          {/* Success Icon - Larger for full page */}
+          <div className="relative z-10 flex justify-center mb-8">
             <div className="relative">
               {/* Outer glow ring */}
-              <div className="absolute inset-0 w-20 h-20 bg-green-400/30 rounded-full animate-ping-slow" />
+              <div className="absolute inset-0 w-32 h-32 bg-green-400/30 rounded-full animate-ping-slow" />
               {/* Main circle */}
-              <div className="relative w-20 h-20 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/40">
-                <Check className="w-10 h-10 text-white stroke-[3]" />
+              <div className="relative w-32 h-32 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center shadow-2xl shadow-green-500/50">
+                <Check className="w-16 h-16 text-white stroke-[3]" />
               </div>
             </div>
           </div>
 
-          {/* Title */}
-          <h2 className="text-2xl font-bold text-gray-800 mb-3">
+          {/* Title - Larger for full page */}
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
             {title}
           </h2>
 
-          {/* Message */}
-          <p className="text-gray-500 mb-8 leading-relaxed">
+          {/* Message - Larger for full page */}
+          <p className="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-md">
             {message}
           </p>
 
-          {/* Continue Button */}
+          {/* Continue Button - Larger for full page */}
           <button
             onClick={onClose}
-            className="w-full bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-green-500/30 flex items-center justify-center gap-2 uppercase tracking-wide"
+            className="bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-white font-bold py-5 px-12 rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-2xl shadow-green-500/40 flex items-center justify-center gap-3 uppercase tracking-wider text-lg"
           >
             {buttonText}
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-6 h-6" />
           </button>
         </div>
       </div>
@@ -145,7 +148,8 @@ function SuccessAlert({
           transform: rotate(45deg);
         }
       `}</style>
-    </>
+    </>,
+    document.body
   );
 }
 
