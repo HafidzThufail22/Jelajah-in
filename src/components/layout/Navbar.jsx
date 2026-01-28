@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -11,10 +11,10 @@ const navLinks = [
   { name: "Kontak", href: "/#kontak" },
 ];
 
-export function Navbar() {
+export const Navbar = memo(function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleNavClick = (href) => {
+  const handleNavClick = useCallback((href) => {
     setIsOpen(false);
     // Handle hash links for same-page navigation
     if (href.startsWith("/#")) {
@@ -23,7 +23,11 @@ export function Navbar() {
         element.scrollIntoView({ behavior: "smooth" });
       }
     }
-  };
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
@@ -57,7 +61,8 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 text-gray-600"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={toggleMenu}
+            aria-label={isOpen ? "Tutup menu" : "Buka menu"}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -67,7 +72,7 @@ export function Navbar() {
         <div
           className={cn(
             "md:hidden overflow-hidden transition-all duration-300",
-            isOpen ? "max-h-64 pb-4" : "max-h-0"
+            isOpen ? "max-h-64 pb-4" : "max-h-0",
           )}
         >
           <div className="flex flex-col gap-4 pt-4">
@@ -89,5 +94,4 @@ export function Navbar() {
       </div>
     </nav>
   );
-}
-
+});
