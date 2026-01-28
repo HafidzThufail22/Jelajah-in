@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
@@ -8,7 +8,16 @@ import borobudur from "@/assets/img/borobudur.jpeg";
 
 const heroImages = [rajaAmpat, bromo, borobudur];
 
-export function Hero() {
+// Preload gambar hero pertama untuk LCP yang lebih cepat
+if (typeof window !== "undefined") {
+  const link = document.createElement("link");
+  link.rel = "preload";
+  link.as = "image";
+  link.href = rajaAmpat;
+  document.head.appendChild(link);
+}
+
+export const Hero = memo(function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -84,4 +93,4 @@ export function Hero() {
       </div>
     </section>
   );
-}
+});
