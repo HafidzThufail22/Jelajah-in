@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, memo, useCallback } from "react";
 import { MapPin, Star } from "lucide-react";
 import { Card, CardImage, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { destinations } from "@/data/destinations";
 
-export function PopularDestinations() {
+export const PopularDestinations = memo(function PopularDestinations() {
   const [showAll, setShowAll] = useState(false);
 
   const displayedDestinations = showAll
     ? destinations
     : destinations.slice(0, 6);
+
+  const toggleShowAll = useCallback(() => {
+    setShowAll((prev) => !prev);
+  }, []);
 
   return (
     <section id="destinasi" className="py-20 bg-gray-50">
@@ -71,7 +75,7 @@ export function PopularDestinations() {
             <Button
               variant="primary"
               className="px-8 py-4"
-              onClick={() => setShowAll(!showAll)}
+              onClick={toggleShowAll}
             >
               {showAll ? "Tampilkan Sedikit" : "Lihat Semua Destinasi"}
             </Button>
@@ -80,4 +84,4 @@ export function PopularDestinations() {
       </div>
     </section>
   );
-}
+});
