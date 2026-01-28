@@ -1,84 +1,143 @@
 #!/bin/bash
 
-# Auto-commit script for Jelajah.in
-# Commits each changed file separately with descriptive messages
+# ============================================
+# Auto-Commit Script for Jelajah.in
+# Commits each changed file separately
+# ============================================
 
-echo "🚀 Starting auto-commit process..."
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}  🚀 Auto-Commit Script Started${NC}"
+echo -e "${CYAN}  Commits each file individually${NC}"
+echo -e "${CYAN}========================================${NC}"
 echo ""
+
+# Navigate to project root (one level up from scripts folder)
+cd "$(dirname "$0")/.."
+
+# Function to generate commit message based on file path
+generate_commit_message() {
+    local file="$1"
+    local status="$2"
+    local filename=$(basename "$file")
+    local dir=$(dirname "$file")
+    
+    # Determine action type
+    case "$status" in
+        "A" | "??") action="feat" ;;
+        "M")        action="update" ;;
+        "D")        action="remove" ;;
+        "R")        action="rename" ;;
+        *)          action="chore" ;;
+    esac
+    
+    # Determine scope based on directory
+    case "$dir" in
+        *"components/ui"*)      scope="ui" ;;
+        *"components/layout"*)  scope="layout" ;;
+        *"components/sections"*) scope="sections" ;;
+        *"pages"*)              scope="pages" ;;
+        *"assets"*)             scope="assets" ;;
+        *"data"*)               scope="data" ;;
+        *"lib"*)                scope="lib" ;;
+        *"scripts"*)            scope="scripts" ;;
+        *"docs"*)               scope="docs" ;;
+        *"public"*)             scope="public" ;;
+        *)                      scope="root" ;;
+    esac
+    
+    # Generate descriptive message
+    case "$action" in
+        "feat")   echo "${action}(${scope}): add ${filename}" ;;
+        "update") echo "${action}(${scope}): update ${filename}" ;;
+        "remove") echo "${action}(${scope}): remove ${filename}" ;;
+        "rename") echo "${action}(${scope}): rename ${filename}" ;;
+        *)        echo "${action}(${scope}): modify ${filename}" ;;
+    esac
+}
 
 # Function to commit a single file
 commit_file() {
     local file="$1"
-    local message="$2"
+    local status="$2"
+    local message=$(generate_commit_message "$file" "$status")
     
-    git add "$file"
+    if [ "$status" == "D" ]; then
+        git add "$file" 2>/dev/null || git rm "$file" 2>/dev/null
+    else
+        git add "$file"
+    fi
+    
     git commit -m "$message"
-    echo "✅ Committed: $file"
+    echo -e "${GREEN}✅ Committed:${NC} $file"
+    echo -e "   ${YELLOW}Message:${NC} $message"
     echo ""
 }
 
+# Check if we're in a git repository
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo -e "${RED}Error: Not a git repository${NC}"
+    exit 1
+fi
+
 # Check if there are any changes
 if [ -z "$(git status --porcelain)" ]; then
-    echo "No changes to commit."
+    echo -e "${YELLOW}No changes to commit.${NC}"
     exit 0
 fi
 
-# Commit each modified/new file with appropriate message
-
-# Button.jsx - Added cyan variant
-if git status --porcelain | grep -q "src/components/ui/Button.jsx"; then
-    commit_file "src/components/ui/Button.jsx" "feat(ui): add cyan button variant"
-fi
-
-# package.json & package-lock.json - Added react-router-dom
-if git status --porcelain | grep -q "package.json"; then
-    git add package.json package-lock.json
-    git commit -m "deps: add react-router-dom for page routing"
-    echo "✅ Committed: package.json, package-lock.json"
-    echo ""
-fi
-
-# main.jsx - Added BrowserRouter
-if git status --porcelain | grep -q "src/main.jsx"; then
-    commit_file "src/main.jsx" "feat(router): wrap app with BrowserRouter"
-fi
-
-# App.jsx - Added Routes
-if git status --porcelain | grep -q "src/App.jsx"; then
-    commit_file "src/App.jsx" "feat(router): add Routes for HomePage and BookingPage"
-fi
-
-# Hero.jsx - Updated link to use React Router
-if git status --porcelain | grep -q "src/components/sections/Hero.jsx"; then
-    commit_file "src/components/sections/Hero.jsx" "feat(hero): update CTA button to navigate to /pesan"
-fi
-
-# Navbar.jsx - Updated navigation with React Router
-if git status --porcelain | grep -q "src/components/layout/Navbar.jsx"; then
-    commit_file "src/components/layout/Navbar.jsx" "feat(navbar): update navigation with React Router Link"
-fi
-
-# New pages folder
-if git status --porcelain | grep -q "src/pages/"; then
-    git add src/pages/
-    git commit -m "feat(pages): add HomePage and BookingPage components"
-    echo "✅ Committed: src/pages/"
-    echo ""
-fi
-
-# docs folder with screenshot
-if git status --porcelain | grep -q "docs/"; then
-    git add docs/
-    git commit -m "docs: add homepage preview screenshot"
-    echo "✅ Committed: docs/"
-    echo ""
-fi
-
-# README.md - Added preview image
-if git status --porcelain | grep -q "README.md"; then
-    commit_file "README.md" "docs(readme): add homepage preview image"
-fi
-
-echo "🎉 Auto-commit complete!"
+# Count total changes
+total_changes=$(git status --porcelain | wc -l)
+echo -e "${CYAN}Found ${total_changes} file(s) with changes${NC}"
 echo ""
-git log --oneline -10
+
+# Counter for committed files
+committed=0
+
+# Process each changed file
+while IFS= read -r line; do
+    # Skip empty lines
+    [ -z "$line" ] && continue
+    
+    # Extract status and file path
+    status="${line:0:2}"
+    file="${line:3}"
+    
+    # Clean up status (remove spaces)
+    status=$(echo "$status" | tr -d ' ')
+    
+    # Handle renamed files (format: R old_name -> new_name)
+    if [[ "$status" == "R"* ]]; then
+        file=$(echo "$file" | awk -F ' -> ' '{print $2}')
+    fi
+    
+    # Remove quotes if present
+    file="${file%\"}"
+    file="${file#\"}"
+    
+    echo -e "${CYAN}Processing:${NC} $file (status: $status)"
+    
+    # Commit the file
+    commit_file "$file" "$status"
+    ((committed++))
+    
+done < <(git status --porcelain)
+
+# Summary
+echo -e "${CYAN}========================================${NC}"
+echo -e "${GREEN}🎉 Auto-commit complete!${NC}"
+echo -e "${CYAN}   Total files committed: ${committed}${NC}"
+echo -e "${CYAN}========================================${NC}"
+echo ""
+
+# Show recent commits
+echo -e "${YELLOW}Recent commits:${NC}"
+git log --oneline -${committed}
