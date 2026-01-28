@@ -8,7 +8,7 @@ function Card({ className, ...props }) {
       data-slot="card"
       className={cn(
         "bg-card text-card-foreground flex flex-col rounded-xl border shadow-sm overflow-hidden",
-        className
+        className,
       )}
       {...props}
     />
@@ -21,7 +21,7 @@ function CardHeader({ className, ...props }) {
       data-slot="card-header"
       className={cn(
         "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
-        className
+        className,
       )}
       {...props}
     />
@@ -54,7 +54,7 @@ function CardAction({ className, ...props }) {
       data-slot="card-action"
       className={cn(
         "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
-        className
+        className,
       )}
       {...props}
     />
@@ -77,7 +77,7 @@ function CardFooter({ className, ...props }) {
   );
 }
 
-function CardImage({ className, src, alt, ...props }) {
+function CardImage({ className, src, alt, loading = "lazy", ...props }) {
   return (
     <div
       data-slot="card-image"
@@ -87,6 +87,8 @@ function CardImage({ className, src, alt, ...props }) {
       <img
         src={src}
         alt={alt}
+        loading={loading}
+        decoding="async"
         className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
       />
     </div>
