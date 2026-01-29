@@ -113,7 +113,7 @@ export const Footer = memo(function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; {currentYear} Jelajah.in. All rights reserved.</p>
+          <p>&copy; {currentYear} Jelajah.in 2026. All rights reserved.</p>
         </div>
       </div>
     </footer>
